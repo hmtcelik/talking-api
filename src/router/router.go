@@ -1,8 +1,6 @@
 package router
 
 import (
-	"fmt"
-
 	"github.com/gofiber/fiber/v2"
 )
 
@@ -24,7 +22,6 @@ func SetupRoutes(app *fiber.App) {
 			Id: 1,
 			Name: "John",
 		}
-		fmt.Println(c.JSON(user))
 		c.JSON(user)
 		return c.SendStatus(200)
 	})
