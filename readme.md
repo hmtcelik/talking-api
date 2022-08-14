@@ -5,7 +5,5 @@
 You can just chat to api and teach some words
 
 ##### Used:
-- [x] gorilla-mux
+- [x] golang-fiberr
 
-##### Will use:
-- [ ] golang-fiberr
