@@ -1,25 +1,13 @@
 package main
 
-import (
-	"fmt"
-	"net/http"
-
-	"talkyapi/router"
-
-	"github.com/gorilla/mux"
-)
+import "github.com/gofiber/fiber/v2"
 
 func main() {
-	fmt.Println("starting up HTTP server...")
-	fmt.Println("Started")
+	app := fiber.New()
 
-	r := mux.NewRouter()
-	
-	router.SetupRoutes(r)
+	app.Get("/", func(c *fiber.Ctx) error {
+		return c.SendString("Hello, World!")
+	})
 
-
-	err := http.ListenAndServe(":8000", r)
-	if err != nil {
-			panic(err)
-	}
+	app.Listen(":3000")
 }
