@@ -1,13 +1,31 @@
 package router
 
-// import (
-// 	"net/http"
-// 	"github.com/gorilla/mux"
-// )
+import (
+	"fmt"
 
-// func SetupRoutes(router *mux.Router) {
-// 	router.HandleFunc("/ping", func(w http.ResponseWriter, r *http.Request) {
-// 		w.Header().Set("Content-Type", "application/json")
-// 		w.Write([]byte(`{"message": "ok"}`))
-// 	}).Methods(http.MethodGet)
-// }
+	"github.com/gofiber/fiber/v2"
+)
+
+type User struct{
+	Id int `json:"id"`
+	Name string `json:"name"`
+}
+
+func SetupRoutes(app *fiber.App) {
+
+	// base
+	app.Get("/", func (c *fiber.Ctx) error{
+		return c.SendString("HOMEPAGE")
+	})
+	
+	// get json res
+	app.Get("/getjson", func(c *fiber.Ctx) error {
+		user := User{
+			Id: 1,
+			Name: "John",
+		}
+		fmt.Println(c.JSON(user))
+		c.JSON(user)
+		return c.SendStatus(200)
+	})
+}
